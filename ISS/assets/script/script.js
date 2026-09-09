@@ -24,6 +24,7 @@ const MARKER = L.marker([0, 0], {icon: ISS_ICON}).addTo(MAP);
 /*******************
   SUIVI ISS
 *******************/
+
 //Création d'une fonction async ( API)
   async function issAPI(map,marker) {
 
@@ -67,21 +68,19 @@ paragraphe.setAttribute("style","height :300px;width : 200px; margin: 16px 0; bo
 //Placement du paragraphe avant le bouton et aprés l'image
 card.insertBefore(paragraphe, boutton);
 
-// Fonction addInfo(element, txt)
+//Création de la fonction addInfo(element, txt) avec la propriété innerText.
 function addInfo(element, txt) {
-
-//Création de la propréité qui permet de lire le texte dans l'elément HTML
     element.innerText = txt;
 }
 
-// Écouteur d'évent sur le bouton qui interroge l'API Météo
+// Création de l'écouteur d'évent sur le bouton "Charger" qui interroge l'API Météo
 boutton.addEventListener("click", async () => {
 //Récupération de l'API avec sécurité ( try & catch)
     try {
         const reponse = await fetch("https://prevision-meteo.ch/services/json/toulouse");
         const donnees = await reponse.json();
 //Création d'une variable qui récupère les données que nous voulons afficher et rajout du texte pour affichage
-        const texteMeteo = "Aujourd'hui le temps est : "+ donnees.current_condition.condition + " ,et la température actuelle est de "+ donnees.current_condition.tmp +"°C La température maximum est de "+ donnees.fcst_day_0.tmax +"°C et la température minimum est de "+ donnees.fcst_day_0.tmin+"°C";
+        const texteMeteo = "Aujourd'hui le temps est : "+ donnees.current_condition.condition + " , la température actuelle est de "+ donnees.current_condition.tmp +"°C. La température maximum est de "+ donnees.fcst_day_0.tmax +"°C et la température minimum est de "+ donnees.fcst_day_0.tmin+"°C";
 //Renseigner les paramètres dans la fonction addInfo à savoir le paragraphe que nous avons crée juste avant et les donnés récupérées
         addInfo(paragraphe, texteMeteo);
 
