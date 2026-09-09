@@ -2,7 +2,7 @@
   MAP LEAFLET
 ***************/
 
-//Récupération de la map aux coordoonées 0, 0 zoom à 5 sur Leaflet
+//Récupération de la carte avec un affichage de base aux coordoonées 0, 0 zoom à 5 sur Leaflet
 const MAP = L.map('map').setView([0, 0], 5);
 
 //Ajout des tuiles provenant de OpenStreetMap
@@ -18,7 +18,7 @@ const ISS_ICON = new L.Icon({
   iconAnchor : [22,94]
 });
 
-//Ajout de l'icone de L'ISS sur la carte
+//Création d'une variable contenant l'icone et avec un affichage aux coordonnées 0,0 sur la carte 
 const MARKER = L.marker([0, 0], {icon: ISS_ICON}).addTo(MAP);
 
 /*******************
@@ -32,7 +32,6 @@ async function issAPI(map,marker) {
   try{
     const reponse = await fetch("http://api.open-notify.org/iss-now.json");
     const donnees = await reponse.json();
-      //console.log(donnees);
 
 //Récupération des coordonnées de l'API dans les variables
     map.panTo([donnees.iss_position.latitude, donnees.iss_position.longitude],5);
@@ -60,7 +59,7 @@ let card = document.querySelector(".cardMeteo");
 let boutton = document.querySelector("button");
 
 //Création du paragraphe
-const paragraphe = document.createElement("p")
+const paragraphe = document.createElement("p");
 
 //Css de l'élément paragraphe dans le JS
 paragraphe.setAttribute("style","height :300px;width : 200px; margin: 16px 0; border : 3px solid grey; padding : 16px 12px 24px 12px");
@@ -86,5 +85,5 @@ boutton.addEventListener("click", async () => {
 
     } catch (erreur) {
         console.log("Une erreur est survenue:", erreur);
-    }
+      }
 });
