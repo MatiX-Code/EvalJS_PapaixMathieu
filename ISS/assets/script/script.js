@@ -26,27 +26,27 @@ const MARKER = L.marker([0, 0], {icon: ISS_ICON}).addTo(MAP);
 *******************/
 
 //Création d'une fonction async ( API)
-  async function issAPI(map,marker) {
+async function issAPI(map,marker) {
 
 //Récupération de l'API avec sécurité ( try et catch)
-    try{
-      const reponse = await fetch("http://api.open-notify.org/iss-now.json");
-      const donnees = await reponse.json();
+  try{
+    const reponse = await fetch("http://api.open-notify.org/iss-now.json");
+    const donnees = await reponse.json();
       //console.log(donnees);
 
 //Récupération des coordonnées de l'API dans les variables
-      map.panTo([donnees.iss_position.latitude, donnees.iss_position.longitude],5);
+    map.panTo([donnees.iss_position.latitude, donnees.iss_position.longitude],5);
 
-      marker.setLatLng([donnees.iss_position.latitude, donnees.iss_position.longitude]);
+    marker.setLatLng([donnees.iss_position.latitude, donnees.iss_position.longitude]);
 
-    } catch (erreur){
+  } catch (erreur){
       console.log("Une erreur est survenue:", erreur);
-      }
     }
+}
 
 // Création de la fonction setInterval qui permet de déplacer en temps réel l'icone et la vue de la carte toutes les 1 secondes
-    setInterval(() =>{    
-issAPI(MAP,MARKER);
+setInterval(() =>{    
+    issAPI(MAP,MARKER);
 },1000);
 
 /***************
