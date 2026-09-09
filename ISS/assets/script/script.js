@@ -80,7 +80,7 @@ boutton.addEventListener("click", async () => {
         const reponse = await fetch("https://prevision-meteo.ch/services/json/toulouse");
         const donnees = await reponse.json();
 //Création d'une variable qui récupère les données que nous voulons afficher et rajout du texte pour affichage
-        const texteMeteo = "Aujourd'hui le temps est : "+ donnees.current_condition.condition + " , la température actuelle est de "+ donnees.current_condition.tmp +"°C. La température maximum est de "+ donnees.fcst_day_0.tmax +"°C et la température minimum est de "+ donnees.fcst_day_0.tmin+"°C";
+        const texteMeteo = "Aujourd'hui le temps est : "+ donnees.current_condition.condition + " , la température actuelle est de "+ donnees.current_condition.tmp +"°C. Il fera au maximum "+ donnees.fcst_day_0.tmax +"°C et au minimum "+ donnees.fcst_day_0.tmin+"°C.";
 //Renseigner les paramètres dans la fonction addInfo à savoir le paragraphe que nous avons crée juste avant et les donnés récupérées
         addInfo(paragraphe, texteMeteo);
 
