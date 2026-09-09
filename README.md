@@ -1,2 +1,2 @@
-# EvalJS_PAPAIXMathieu
+# EvalJS_PapaïxMathieu
 Evaluation JS
